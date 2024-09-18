@@ -7,10 +7,12 @@ class Page_Inventory():
         self.cart = (By.ID,'shopping_cart_container')
         self.order = (By.CLASS_NAME, 'product_sort_container')
         self.item = (By.CLASS_NAME, 'inventory_item_name')
+        self.menu = (By.ID, 'react-burger-menu-btn')
+        self.logout_button = (By.ID, 'logout_sidebar_link')
 
     def select_element(self, element):
-        elements = {'onesie':'add-to-cart-sauce-labs-onesie','fleece':'add-to-cart-sauce-labs-fleece-jacket'}
-        self.driver.find_element(By.ID,elements[element]).click()
+        #pre_element = 'add-to-cart-'+element.replace(' ','-').lower()
+        self.driver.find_element(By.ID,'add-to-cart-'+element.replace(' ','-').lower()).click()
     
     def go_to_cart(self):
         self.driver.find_element(*self.cart).click()
@@ -31,6 +33,10 @@ class Page_Inventory():
             texts.append(item.text)
         return texts
         
+    def logout(self):
+        self.driver.find_element(*self.menu).click()
+        self.driver.find_element(*self.logout_button).click()
+
 
 
 

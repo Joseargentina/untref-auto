@@ -9,22 +9,32 @@ from pages.page_checkout_II import Page_Checkout_II
 from pages.page_checkout_complete import Page_Checkout_Complete
 class Compras(unittest.TestCase):
 
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.driver = webdriver.Firefox()
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls.driver.close()
+        cls.driver.quit()
+    
     def setUp(self) -> None:
-        self.driver = webdriver.Firefox()
+        #self.driver = webdriver.Firefox()
         self.driver.maximize_window()
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(10)
         self.driver.get('https://www.saucedemo.com/')
         page_login = Page_Login(self.driver)
         page_login.login('standard_user','secret_sauce')
         self.page_inventory = Page_Inventory(self.driver)
 
-    def tearDown(self) -> None:
-        self.driver.close()
-        self.driver.quit()
+    #def tearDown(self) -> None:
+        #self.page_inventory.logout()
+        #self.driver.close()
+        #self.driver.quit()
 
     def test_compra_basica(self):
-        self.page_inventory.select_element('onesie')
-        self.page_inventory.select_element('fleece')
+        self.page_inventory.select_element('sauce labs onesie')
+        self.page_inventory.select_element('sauce labs fleece jacket')
         self.page_inventory.go_to_cart()
         page_cart = Page_Cart(self.driver)
         page_cart.go_to_checkout()
@@ -50,6 +60,13 @@ class Compras(unittest.TestCase):
         self.page_inventory.select_order_by_visible_text('Name (A to Z)')
         texts = self.page_inventory.get_articles_names()
         self.assertEqual(texts, sorted(texts))
+
+    #def test_buy_II(self):
+        #Tarea para el miercoles, terminar este caso de prueba.
+    #    self.page_inventory.select_element('sauce labs backpack')
+    #    self.page_inventory.select_element('Sauce Labs fleece jacket')
+
+
 
 #formas de ordenar una lista:
 #1- lista.sort() Modificar la lista.
