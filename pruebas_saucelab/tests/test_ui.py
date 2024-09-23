@@ -1,5 +1,10 @@
 import unittest
 from selenium import webdriver
+from dotenv import load_dotenv
+import os
+#from selenium.webdriver.firefox.options import Options
+
+from selenium.webdriver.chrome.options import Options
 
 from pages.page_login import Page_Login
 from pages.page_inventory import Page_Inventory
@@ -11,7 +16,11 @@ class Compras(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        cls.driver = webdriver.Firefox()
+        options = Options()
+        options.add_argument('--incognito')
+        options.add_argument('--headless')
+        #cls.driver = webdriver.Firefox(options = options)
+        cls.driver = webdriver.Chrome(options=options)
 
     @classmethod
     def tearDownClass(cls) -> None:
@@ -20,11 +29,15 @@ class Compras(unittest.TestCase):
     
     def setUp(self) -> None:
         #self.driver = webdriver.Firefox()
+        load_dotenv()
+        base_url = os.getenv('BASE_URL')
+        user = os.getenv('USER')
+        password = os.getenv('PASS')
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
-        self.driver.get('https://www.saucedemo.com/')
+        self.driver.get(base_url)
         page_login = Page_Login(self.driver)
-        page_login.login('standard_user','secret_sauce')
+        page_login.login(user,password)
         self.page_inventory = Page_Inventory(self.driver)
 
     #def tearDown(self) -> None:
