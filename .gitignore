@@ -1,1 +1,4 @@
 env/
+/pruebas_saucelab/tests/.env
+/pruebas_saucelab/test-reports
+__pycache__
