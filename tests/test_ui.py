@@ -32,7 +32,7 @@ class Compras(unittest.TestCase):
         # print(f"Base URL: {base_url}") 
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
-        self.driver.get(base_url)
+        self.driver.get(os.getenv('https://www.saucedemo.com/'))
         page_login = Page_Login(self.driver)
         page_login.login(user,password)
         self.page_inventory = Page_Inventory(self.driver)
