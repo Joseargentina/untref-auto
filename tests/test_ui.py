@@ -26,9 +26,9 @@ class Compras(unittest.TestCase):
     
     def setUp(self) -> None:
         load_dotenv()
-        base_url = os.getenv('BASE_URL')
-        user = os.getenv('USER')
-        password = os.getenv('PASSWORD')
+        base_url = os.getenv('https://www.saucedemo.com/')
+        user = os.getenv('standard_user')
+        password = os.getenv('secret_sauce')
         # print(f"Base URL: {base_url}") 
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
