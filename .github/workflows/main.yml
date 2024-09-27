@@ -32,7 +32,11 @@ jobs:
           pip install unittest-xml-reporting
 
       - name: Set environment variables
-        run: echo "ENV_DATA=${{ secrets.ENV_DATA}}" >> $GITHUB_ENV
+        run: |
+          # Guardar ENV_DATA en un archivo .env
+          echo "${{ secrets.ENV_DATA }}" > .env
+          # Reemplazar saltos de línea en .env por espacios y exportar variables
+          export $(grep -v '^#' .env | xargs)
 
       - name: Run Selenium tests
         run: |
