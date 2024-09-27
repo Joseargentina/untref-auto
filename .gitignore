@@ -12,3 +12,6 @@ __pycache__/
 .env
 __pycache__/
 >>>>>>> feature-api-testing
+
+.vscode/
+schemas/

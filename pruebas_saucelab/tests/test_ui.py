@@ -14,7 +14,7 @@ class Compras(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         options = Options()
-        # options.add_argument('--incognito')
+        options.add_argument('--incognito')
         options.add_argument('--headless')
         # cls.driver = webdriver.Firefox(options=options)
         cls.driver = webdriver.Chrome(options = options)

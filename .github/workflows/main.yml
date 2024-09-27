@@ -1,0 +1,39 @@
+name: Untref Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+      - featuring-api-testing
+
+jobs:
+  selenium-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install selenium 
+          pip install python-dotenv
+          pip install request:
+          pip install html-testRunner
+          pip install unittest-xml-reporting
+
+      - name: Set enviroment variables
+        run: echo "ENV_DATA=${{ secrets.ENV_DATA }}" >> GITHUB_ENV
+
+      - name: Run Selenium Tests
+        run: |
+          python -m unittest discover -s pruebas_saucelab/tests
