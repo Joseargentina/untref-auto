@@ -1,8 +1,13 @@
 env/
 <<<<<<< HEAD
+<<<<<<< HEAD
 /pruebas_saucelab/tests/.env
 /pruebas_saucelab/test-reports
 __pycache__
+=======
+.env
+__pycache__/
+>>>>>>> feature-api-testing
 =======
 .env
 __pycache__/

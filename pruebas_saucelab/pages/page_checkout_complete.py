@@ -1,15 +1,4 @@
 from selenium.webdriver.common.by import By
-<<<<<<< HEAD
-
-
-class Page_Checkout_Complete:
-    def __init__(self, driver):
-        self.driver = driver
-        self.final_message = (By.CLASS_NAME,'complete-header')
-
-    def get_final_message(self):
-        return self.driver.find_element(*self.final_message).text
-=======
 import re
 
 class Page_Checkout():
@@ -69,4 +58,3 @@ class Page_Checkout():
     
     def go_to_continue(self):
         return self.driver.find_element(*self.continue_button).click()
->>>>>>> feature-api-testing
