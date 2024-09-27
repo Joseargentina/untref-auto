@@ -121,10 +121,3 @@ class Compras(unittest.TestCase):
         
 if __name__ == '__main__':
     unittest.main()
-    
-
-
-
-#formas de ordenar una lista:
-#1- lista.sort() Modificar la lista.
-#2- sorted(lista) Crea una copia ordenada de la lista
