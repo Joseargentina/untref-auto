@@ -16,6 +16,7 @@ class Compras(unittest.TestCase):
         options = Options()
         options.add_argument('--incognito')
         options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
         # cls.driver = webdriver.Firefox(options=options)
         cls.driver = webdriver.Chrome(options = options)
 
@@ -26,13 +27,13 @@ class Compras(unittest.TestCase):
     
     def setUp(self) -> None:
         load_dotenv()
-        base_url = os.getenv('BASE_URL')
+        # base_url = os.getenv('BASE_URL')
         user = os.getenv('standard_user')
         password = os.getenv('secret_sauce')
         # print(f"Base URL: {base_url}") 
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
-        self.driver.get(base_url)
+        self.driver.get(os.getenv('BASE_URL'))
         page_login = Page_Login(self.driver)
         page_login.login(user,password)
         self.page_inventory = Page_Inventory(self.driver)
