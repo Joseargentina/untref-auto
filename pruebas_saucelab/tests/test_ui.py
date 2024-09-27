@@ -32,7 +32,7 @@ class Compras(unittest.TestCase):
         load_dotenv()
         base_url = os.getenv('BASE_URL')
         user = os.getenv('USER')
-        password = os.getenv('PASS')
+        password = os.getenv('PASSWORD')
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(base_url)
